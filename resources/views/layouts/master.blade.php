@@ -20,6 +20,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="/assets/css/themify-icons.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="wrapper">
@@ -38,7 +39,7 @@
         </div>
         @php
         $routes = [
-            ['name' => 'Mail Manager', 'route' => 'home.index', 'icon' => 'fa fa-user'],
+        ['name' => 'Mail Manager', 'route' => 'home.index', 'icon' => 'fa fa-user'],
         ];
         @endphp
         <ul class="nav">
@@ -115,10 +116,10 @@
                 </li>
                 <li>
                     <a href="http://blog.creative-tim.com">
-                       Blog
-                   </a>
-               </li>
-               <li>
+                     Blog
+                 </a>
+             </li>
+             <li>
                 <a href="http://www.creative-tim.com/license">
                     Licenses
                 </a>
@@ -134,12 +135,12 @@
 </div>
 
 
+
 </body>
 <!--   Core JS Files   -->
-<script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <!--  Checkbox, Radio & Switch Plugins -->
-{{-- <script src="/assets/js/bootstrap-checkbox-radio.js"></script> --}}
 <!--  Charts Plugin -->
 <script src="/assets/js/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -150,6 +151,32 @@
 <script src="/assets/js/paper-dashboard.js"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/js/demo.js"></script>
-@yield('master.js')
+<!-- <script src="/assets/js/insertMails.js"></script> -->
 
+<!-- @yield('master.js') -->
+<script type="text/javascript">
+
+
+
+    $(document).ready(function(){
+        $("#submit_get").click(function(){
+        //alert('OK');
+        $.ajax({
+            url : "{{route('home.ajax')}}",
+            type : "POST",
+            data : {'_token': $('input[name=_token]').val(),
+               // number : 'asd'
+           },
+           success : function (result){
+                alert(result);
+            },
+            error: function(err){
+                alert(err);
+            }
+    });
+
+    });
+    });
+
+</script>
 </html>
