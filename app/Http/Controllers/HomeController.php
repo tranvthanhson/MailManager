@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmailsRequest;
+// use App\Http\Requests\EmailsRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index');
+        $getEmails = DB::table('mails')
+            ->join('extensions', 'extensions.extension_id', '=', 'mails.extension_id')
+            ->select('mails.*', 'extensions.extension_content')
+            ->orderBy('mail_id', 'desc')
+            ->get();
+        return view('home.index', compact('getEmails'));
     }
 
-    public function storeEmail(EmailsRequest $request)
+    public function storeEmail(Request $request)
     {
-        if (isset($request->insertEmail)) {
-            $email = $request->emails;
-            $emails = explode("\r\n", $email);
+        if (isset($request->tukhoa)) {
+            $email = $request->tukhoa;
+
+            $emails = explode("\n", $email);
             foreach ($emails as $email) {
                 $detailEmail = explode('@', $email);
 
@@ -31,13 +38,27 @@ class HomeController extends Controller
                     ['mail' => $detailEmail[0], 'extension_id' => $getExtensionRecord[0]->extension_id]
                 );
             }
-            $request->session()->flash('msg', 'Add Emails successful!');
-            return redirect()->route('home.index');
-        }
-    }
+            $getEmails = DB::table('mails')
+                ->join('extensions', 'extensions.extension_id', '=', 'mails.extension_id')
+                ->select('mails.*', 'extensions.extension_content')
+                ->orderBy('mail_id', 'desc')
+                ->get();
+            // dd($getEmails);
 
-    public function ajax()
-    {
-        echo 'OK';
+            foreach ($getEmails as $getEmail):
+                echo '<tr style="display: block;">
+				                  <td style="width: 50%; display: block; float:left;">' . $getEmail->mail . '@' . $getEmail->extension_content . '</td>
+				                  <td style="width: 50%; display: block; float:left; text-align: right;">
+				                      <a href="" class="btn btn-success btn-sm" title="Sửa">
+				                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				                      </a>
+				                      <a href="" class="btn btn-danger btn-sm" title="Xoá">
+				                          <i class="fa fa-trash" aria-hidden="true"></i>
+				                      </a>
+				                      <div class="clearfix"></div>
+				                  </td>
+				              </tr>';
+            endforeach;
+        }
     }
 }

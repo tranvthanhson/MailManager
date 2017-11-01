@@ -36,16 +36,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" id="insertEmail" onclick="insertMails()" name="insertEmail" class="btn btn-default btn-full btn-radius" style="border:1px solid black;" value="Submit" />
+                            <input type="submit"  id="submit_get" name="insertEmail" class="btn btn-default btn-full btn-radius" style="border:1px solid black;" value="Submit" />
                         </div>
                         <div class="clearfix"></div>
-                         <input type="submit" name="show" id="submit_get"  value="click">
+
                     </form>
-
-
-                    <div class="ajaxsanpham">
-                        <h2>xin chao</h2>
-                    </div>
 
                 </div>
             </div>
@@ -83,27 +78,27 @@
                                 <th style="width: 50%; display: block; float:left; text-align: center;">Options</th>
                             </tr>
                         </thead>
-                        <tbody style="display: block; height: 500px; overflow-y: auto;">
-                            @for($i=0; $i<100; $i++)
-                            <tr style="display: block;">
-                                <td style="width: 50%; display: block; float:left;">tranvthanhson@gmail.com</td>
-                                <td style="width: 50%; display: block; float:left; text-align: right;">
-                                    <a href="" class="btn btn-success btn-sm" title="Sửa">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" class="btn btn-danger btn-sm" title="Xoá">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                    <div class="clearfix"></div>
-                                </td>
-                            </tr>
-                            @endfor
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <tbody class="ajaxsanpham" style="display: block; height: 500px; overflow-y: auto;">
+                            <?php foreach ($getEmails as $getEmail): ?>
+                                <tr style="display: block;">
+                                  <td style="width: 50%; display: block; float:left;"><?=$getEmail->mail?>@<?=$getEmail->extension_content?></td>
+                                  <td style="width: 50%; display: block; float:left; text-align: right;">
+                                      <a href="" class="btn btn-success btn-sm" title="Sửa">
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                      </a>
+                                      <a href="" class="btn btn-danger btn-sm" title="Xoá">
+                                          <i class="fa fa-trash" aria-hidden="true"></i>
+                                      </a>
+                                      <div class="clearfix"></div>
+                                  </td>
+                              </tr>
+                          <?php endforeach;?>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 </div>
 
