@@ -83,10 +83,32 @@
                                 <tr style="display: block;">
                                   <td style="width: 50%; display: block; float:left;"><?=$getEmail->mail?>@<?=$getEmail->extension_content?></td>
                                   <td style="width: 50%; display: block; float:left; text-align: right;">
-                                      <a href="" class="btn btn-success btn-sm" title="Sửa">
+                                      <a data-toggle="modal" data-target="#editEmail" href="" class="btn btn-success btn-sm" title="Sửa">
                                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                       </a>
-                                      <a href="" class="btn btn-danger btn-sm" title="Xoá">
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="editEmail" role="dialog">
+                                        <div class="modal-dialog">
+
+                                          <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h4 class="modal-title">UPDATE EMAIL</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              <div class="form-group">
+                                                <input type="email" class="form-control" id="" placeholder="Vui long nhap email">
+                                              </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-primary" data-dismiss="modal">Gui</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <a href="{{ route('home.deleteEmail',['id'=>$getEmail->mail_id]) }}" class="btn btn-danger btn-sm" title="Xoá">
                                           <i class="fa fa-trash" aria-hidden="true"></i>
                                       </a>
                                       <div class="clearfix"></div>
