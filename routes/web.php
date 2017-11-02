@@ -11,9 +11,14 @@
 |
  */
 
+Route::pattern('slug', '(.*)');
+Route::pattern('id', '([0-9]*)');
+
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::post('storeEmail', 'HomeController@storeEmail')->name('home.storeEmail');
 Route::post('ajax', 'HomeController@ajax')->name('home.ajax');
+Route::get('deleteEmail/{id}', 'HomeController@deleteEmail')->name('home.deleteEmail');
+
 // Route::post('storeEmail', [
 //     'uses' => 'HomeController@ajax',
 //     'as' => 'home.storeEmail',
