@@ -89,6 +89,9 @@
 	text-align: center;
     color: #68B3C8;
 }
+#editEmail input {
+    border: 1px solid #ccc !important;
+}
 .navbar {
 	z-index:  1 !important;
 }

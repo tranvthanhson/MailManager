@@ -17,6 +17,7 @@ Route::pattern('id', '([0-9]*)');
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::post('storeEmail', 'HomeController@storeEmail')->name('home.storeEmail');
 Route::post('ajax', 'HomeController@ajax')->name('home.ajax');
+Route::post('updateEmail/{id}', 'HomeController@updateEmail')->name('home.updateEmail');
 Route::get('deleteEmail/{id}', 'HomeController@deleteEmail')->name('home.deleteEmail');
 
 // Route::post('storeEmail', [
