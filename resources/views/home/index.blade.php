@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="col-md-9">
-                <input class="form-control border-input" name="teacher">
+                <input id="myInput" class="form-control border-input" name="teacher">
               </input>
             </div>
             <div class="col-md-3">
@@ -78,7 +78,7 @@
                   <th style="width: 50%; display: block; float:left; text-align: center;">Options</th>
                 </tr>
               </thead>
-              <tbody class="ajaxsanpham" style="display: block; height: 500px; overflow-y: auto;">
+              <tbody id="myTable" class="ajaxsanpham" style="display: block; height: 500px; overflow-y: auto;">
                 @foreach ($getEmails as $getEmail)
                 <tr style="display: block;">
                 <td style="width: 50%; display: block; float:left;">{{ $getEmail->mail.'@'.$getEmail->extension_content }}</td>
@@ -131,4 +131,51 @@
 </div>
 </div>
 
+@endsection
+
+@section('master.js')
+<script>
+  $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+    $(document).ready(function(){
+//         $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
+        $("#submit_get").click(function(){
+        //alert('OK');
+        var tukhoa =$('#emailContent').val();
+        alert(tukhoa);
+        $.ajax({
+            url : "/storeEmail",
+            type : "POST",
+            data : {
+                '_token': $('input[name=_token]').val(),
+                tukhoa : tukhoa
+           },
+           success : function (result){
+                cc();
+                // alert(result);
+                $('.ajaxsanpham').html(result);
+            },
+            error: function(err){
+                alert(err+'sfsdfdf');
+            }
+    });
+
+    });
+    });
+
+    // function cc() {
+    //     alert("Ajax runnning");
+    // }
+</script>
 @endsection
