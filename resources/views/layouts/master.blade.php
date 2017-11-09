@@ -155,6 +155,6 @@
 <script src="/assets/js/insertMails.js"></script>
 <!-- resources/assets/js/insertMails.js -->
 
-<!-- @yield('master.js') -->
+@yield('master.js')
 
 </html>
