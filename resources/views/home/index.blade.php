@@ -55,20 +55,18 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <select class="form-control border-input">
-                    <option value="">-- Choose --</option>
-                    <option value="">gmail.com</option>
-                    <option value="">dtu.edu.vn</option>
+                  <select class="form-control border-input" id="extension">
+                    @foreach ($getExtensions as $getExtension)
+                    <option value="{{$getExtension->extension_content}}">{{$getExtension->extension_content}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
-              <div class="col-md-9">
-                <input id="myInput" class="form-control border-input" name="teacher">
+              <div class="col-md-12">
+                <input id="searchBox" class="form-control border-input" name="teacher" placeholder="Search">
               </input>
             </div>
-            <div class="col-md-3">
-              <button type="submit" class="btn btn-default btn-full btn-radius border-solid-black">Search</button>
-            </div>
+
           </div>
           <div class="content table-responsive table-full-width">
             <table class="table table-striped border-solid-black">
@@ -135,15 +133,25 @@
 
 @section('master.js')
 <script>
-  $(document).ready(function(){
-  $("#myInput").on("keyup", function() {
+    //search email
+    $(document).ready(function(){
+    $("#searchBox").on("keyup", function() {
 
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
     });
   });
-});
+        $(document).ready(function(){
+    $("#extension").on("change", function() {
+      var value = $('#extension').val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+    //display mail
     $(document).ready(function(){
 //         $.ajaxSetup({
 //     headers: {
@@ -153,7 +161,7 @@
         $("#submit_get").click(function(){
         //alert('OK');
         var tukhoa =$('#emailContent').val();
-        alert(tukhoa);
+        // alert(tukhoa);
         $.ajax({
             url : "/storeEmail",
             type : "POST",
@@ -162,7 +170,7 @@
                 tukhoa : tukhoa
            },
            success : function (result){
-                cc();
+                // cc();
                 // alert(result);
                 $('.ajaxsanpham').html(result);
             },
