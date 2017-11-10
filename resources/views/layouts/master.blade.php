@@ -17,6 +17,7 @@
     <link href="/assets/css/paper-dashboard.css" rel="stylesheet"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="/assets/css/demo.css" rel="stylesheet" />
+    <link href="/assets/css/loader.css" rel="stylesheet">
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
@@ -24,6 +25,18 @@
 
 </head>
 <body>
+     <div id="loader">
+        <div id="floatingCirclesG">
+            <div class="f_circleG" id="frotateG_01"></div>
+            <div class="f_circleG" id="frotateG_02"></div>
+            <div class="f_circleG" id="frotateG_03"></div>
+            <div class="f_circleG" id="frotateG_04"></div>
+            <div class="f_circleG" id="frotateG_05"></div>
+            <div class="f_circleG" id="frotateG_06"></div>
+            <div class="f_circleG" id="frotateG_07"></div>
+            <div class="f_circleG" id="frotateG_08"></div>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="sidebar" data-background-color="white" data-active-color="info">
 
@@ -121,6 +134,7 @@
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/js/demo.js"></script>
 <script src="/assets/js/insertMails.js"></script>
+<script src="/assets/js/loader.js"></script>
 <!-- resources/assets/js/insertMails.js -->
 <script>
     $.ajaxSetup({

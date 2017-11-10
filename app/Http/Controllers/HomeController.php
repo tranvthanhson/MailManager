@@ -111,7 +111,7 @@ class HomeController extends Controller
         }
     }
 
-    public function deleteEmail($id, Request $request)
+    public function delete($id, Request $request)
     {
         $mailExtensionId = DB::table('mails')
             ->where('mail_id', '=', $id)

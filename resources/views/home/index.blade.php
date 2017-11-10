@@ -103,7 +103,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="{{ route('home.deleteEmail',['id'=>$mail->mail_id]) }}" class="btn btn-danger btn-sm" title="Xoá">
+                                        <a href="{{ route('home.delete',['id'=>$mail->mail_id]) }}" class="btn btn-danger btn-sm" title="Xoá">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                         <div class="clearfix"></div>
@@ -148,18 +148,18 @@
         // });
     }
     $(document).ready(function(){
-
+        hiddenLoader();
         $("#searchBox").on("keyup", function() {
             fetchEmailsTable();
         });
 
         $("#extensions").on("change", function() {
-            // console.log('asd');
             fetchEmailsTable();
         });
 
         $("#addEmails").click(function(){
             var email = $('#emailContent').val();
+            showLoader();
             $.ajax({
                 url : "/storeEmail",
                 type : "POST",
@@ -185,6 +185,7 @@
         },
         success : function (result){
             $('#extensions').html(result);
+            hiddenLoader();
         },
         error: function(err){
             alert(err);
