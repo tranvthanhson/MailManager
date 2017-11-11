@@ -17,6 +17,7 @@
     <link href="/assets/css/paper-dashboard.css" rel="stylesheet"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="/assets/css/demo.css" rel="stylesheet" />
+    <link href="/assets/css/loader.css" rel="stylesheet">
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
@@ -24,6 +25,18 @@
 
 </head>
 <body>
+     <div id="loader">
+        <div id="floatingCirclesG">
+            <div class="f_circleG" id="frotateG_01"></div>
+            <div class="f_circleG" id="frotateG_02"></div>
+            <div class="f_circleG" id="frotateG_03"></div>
+            <div class="f_circleG" id="frotateG_04"></div>
+            <div class="f_circleG" id="frotateG_05"></div>
+            <div class="f_circleG" id="frotateG_06"></div>
+            <div class="f_circleG" id="frotateG_07"></div>
+            <div class="f_circleG" id="frotateG_08"></div>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="sidebar" data-background-color="white" data-active-color="info">
 
@@ -40,7 +53,7 @@
         </div>
         @php
         $routes = [
-        ['name' => 'Mail Manager', 'route' => 'home.index', 'icon' => 'fa fa-user'],
+            ['name' => 'Mail Manager', 'route' => 'home.index', 'icon' => 'fa fa-user'],
         ];
         @endphp
         <ul class="nav">
@@ -68,69 +81,37 @@
                 </button>
                 <a class="navbar-brand" href="#">Table List</a>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
+        </div>
+    </nav>
+
+    @yield('master.content')
+
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="ti-panel"></i>
-                            <p>Stats</p>
+                        <a>
+                            Creative Son
                         </a>
                     </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="ti-bell"></i>
-                        <p class="notification">5</p>
-                        <p>Notifications</p>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a></li>
-                        <li><a href="#">Notification 2</a></li>
-                        <li><a href="#">Notification 3</a></li>
-                        <li><a href="#">Notification 4</a></li>
-                        <li><a href="#">Another notification</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ti-settings"></i>
-                        <p>Settings</p>
+                    <li>
+                        <a>
+                           Mail Manager
+                       </a>
+                   </li>
+                   <li>
+                    <a>
+                        Licenses
                     </a>
                 </li>
             </ul>
-
+        </nav>
+        <div class="copyright pull-right">
+            &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a>Tran Vu Thanh Son</a>
         </div>
     </div>
-</nav>
-
-@yield('master.content')
-
-
-<footer class="footer">
-    <div class="container-fluid">
-        <nav class="pull-left">
-            <ul>
-                <li>
-                    <a href="http://www.creative-tim.com">
-                        Creative Tim
-                    </a>
-                </li>
-                <li>
-                    <a href="http://blog.creative-tim.com">
-                     Blog
-                 </a>
-             </li>
-             <li>
-                <a href="http://www.creative-tim.com/license">
-                    Licenses
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <div class="copyright pull-right">
-        &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
-    </div>
-</div>
 </footer>
 </div>
 </div>
@@ -153,7 +134,15 @@
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/js/demo.js"></script>
 <script src="/assets/js/insertMails.js"></script>
+<script src="/assets/js/loader.js"></script>
 <!-- resources/assets/js/insertMails.js -->
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
+</script>
 
 @yield('master.js')
 

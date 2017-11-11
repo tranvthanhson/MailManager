@@ -1,0 +1,2 @@
+- Xóa mail bằng ajax
+- Xuất file ra vsc
