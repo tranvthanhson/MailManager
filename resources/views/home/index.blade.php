@@ -103,9 +103,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="{{ route('home.delete',['id'=>$mail->mail_id]) }}" class="btn btn-danger btn-sm" title="Xoá">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </a>
+                                        <input type="submit" id="deleteEmail" onclick="deleteEmail({{$mail->mail_id}})"  class="btn btn-danger btn-sm" value="Xoá">
+
                                         <div class="clearfix"></div>
                                     </td>
                                 </tr>
@@ -175,23 +174,43 @@
                 }
             });
         });
+
     });
 
-    var loadExtensions = function() {
-       $.ajax({
-        url : "/loadExtensions",
-        type : "POST",
-        data : {
-        },
-        success : function (result){
-            $('#extensions').html(result);
-            hiddenLoader();
-        },
-        error: function(err){
-            alert(err);
+
+   function deleteEmail(idEmail){
+
+        showLoader();
+            $.ajax({
+                url : '/delete',
+                type : "POST",
+                data : {
+                    idEmail : idEmail
+                },
+                success : function (result){
+                    $('#emailsTable').html(result);
+                    loadExtensions();
+                    hiddenLoader();
+                },
+                error: function(err){
+                    alert(err);
+                }
+            });
+        };
+        var loadExtensions = function() {
+           $.ajax({
+                url : "/loadExtensions",
+                type : "POST",
+                data : {
+                },
+                success : function (result){
+                    $('#extensions').html(result);
+                    // hiddenLoader();
+                },
+                error: function(err){
+                    alert(err);
+                }
+            });
         }
-    });
-   }
-
 </script>
 @endsection

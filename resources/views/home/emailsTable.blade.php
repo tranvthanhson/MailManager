@@ -31,11 +31,9 @@
                </div>
            </div>
        </div>
-       <a href="/deleteEmail/{{$mail->mail_id}}" class="btn btn-danger btn-sm" title="Xoá">
-           <i class="fa fa-trash" aria-hidden="true"></i>
-       </a>
+       <input type="submit" id="deleteEmail" onclick="deleteEmail({{$mail->mail_id}})"  class="btn btn-danger btn-sm" value="Xoá">
+
        <div class="clearfix"></div>
    </td>
 </tr>
 @endforeach
-
