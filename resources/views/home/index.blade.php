@@ -105,15 +105,12 @@
                                                 </div>
                                             </div>
                                         </div>
-<<<<<<< HEAD
-                                        <input type="submit" id="deleteEmail" onclick="deleteEmail({{$mail->mail_id}})"  class="btn btn-danger btn-sm" value="Xoá">
 
-=======
                                         {{-- <input id="mailId" type="hidden" value="{{$mail->mail_id}}"> --}}
                                         <button class="btn btn-danger btn-sm delete" title="Xoá" value="{{ $mail->mail_id }}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
->>>>>>> dev
+
                                         <div class="clearfix"></div>
                                     </td>
                                 </tr>
@@ -206,26 +203,6 @@
 
 
     });
-
-   function deleteEmail(idEmail){
-
-        showLoader();
-            $.ajax({
-                url : '/delete',
-                type : "POST",
-                data : {
-                    idEmail : idEmail
-                },
-                success : function (result){
-                    $('#emailsTable').html(result);
-                    loadExtensions();
-                    hiddenLoader();
-                },
-                error: function(err){
-                    alert(err);
-                }
-            });
-        };
         var loadExtensions = function() {
            $.ajax({
                 url : "/loadExtensions",

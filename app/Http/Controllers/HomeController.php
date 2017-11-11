@@ -113,12 +113,8 @@ class HomeController extends Controller
 
     public function delete(Request $request)
     {
-<<<<<<< HEAD
-        // return $request->idEmail;
-        $idEmail = $request->idEmail;
-=======
+
         $id = $request->id;
->>>>>>> dev
         $mailExtensionId = DB::table('mails')
             ->where('mail_id', '=', $idEmail)
             ->select('extension_id')
