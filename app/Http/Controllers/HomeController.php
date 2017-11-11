@@ -111,8 +111,9 @@ class HomeController extends Controller
         }
     }
 
-    public function delete($id, Request $request)
+    public function delete(Request $request)
     {
+        $id = $request->id;
         $mailExtensionId = DB::table('mails')
             ->where('mail_id', '=', $id)
             ->select('extension_id')
@@ -130,7 +131,12 @@ class HomeController extends Controller
                 ->delete();
         }
         $request->session()->flash('msg', 'Delete Email success!');
-        return redirect()->route('home.index');
+        $mails = DB::table('mails')
+            ->join('extensions', 'extensions.extension_id', '=', 'mails.extension_id')
+            ->select('mails.*', 'extensions.extension_content')
+            ->orderBy('mail_id', 'desc')
+            ->get();
+        return view('home.emailsTable', compact('mails'));
     }
 
     public function search(Request $request)
