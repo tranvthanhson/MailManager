@@ -64,9 +64,9 @@
                         </div>
                     </div>
                     <div class="content table-responsive table-full-width">
-                        <table class="table table-striped border-solid-black">
+                        <table class="table table-striped border-solid-black" >
                             <thead>
-                                <tr style="display: block;">
+                                <tr>
                                     <th style="width: 50%; display: block; float:left;">Mail</th>
                                     <th style="width: 50%; display: block; float:left; text-align: center;">Options</th>
                                 </tr>
@@ -83,16 +83,18 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">UPDATE EMAIL</h4>
+                                                        <h4 class="modal-title" style="text-align: center; color: #7f8c8d;">UPDATE EMAIL</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" style="margin-top: -40px;">&times;</button>
                                                     </div>
                                                     <form action="{{route('home.updateEmail', ['id'=>$mail->mail_id])}}" method="POST" >
                                                         {{ csrf_field()}}
                                                         <div class="modal-body">
                                                             <div class="form-group">
+                                                                <p style="float: left; color: #7f8c8d;">Mail</p>
                                                                 <input type="text" class="form-control" name="mail" value="{{$mail->mail}}" placeholder="Enter mail">
                                                             </div>
                                                             <div class="form-group">
+                                                                <p style="float: left; color: #7f8c8d;">Extension</p>
                                                                 <input type="text" name="extension_content"  class="form-control" value="{{$mail->extension_content}}" id="" placeholder="Enter extension">
                                                             </div>
                                                         </div>
